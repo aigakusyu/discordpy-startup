@@ -1,9 +1,12 @@
-from discord.ext import commands
-import os
-import traceback
-
 # インストールした discord.py を読み込む
 import discord
+import pandas as pd
+import random
+import codecs
+siritori =""
+
+with codecs.open('s_hyou.csv', "r", "UTF-8", "ignore") as file:
+    siritori = pd.read_table(file, delimiter=",")
 
 # 自分のBotのアクセストークンに置き換えてください
 TOKEN = os.environ['DISCORD_BOT_TOKEN']
@@ -23,9 +26,25 @@ async def on_message(message):
     # メッセージ送信者がBotだった場合は無視する
     if message.author.bot:
         return
-    # 「/neko」と発言したら「にゃーん」が返る処理
-    if message.content == '/neko':
-        await message.channel.send('にゃーん')
+
+    def check(msg):
+        return msg.author == message.author
+
+    if message.content.startswith("/s start"):
+
+        await message.channel.send("しりとりスタート！　しりとり")
+
+        while True:
+
+            wait_message = await client.wait_for("message", check=check)
+
+            i = random.randint(0,100)
+
+            await message.channel.send(siritori[wait_message.content[-1]][i])
+
+            if wait_message.content[-1] == "ん":
+                print("最後が「ん」だよ！！！！！！")
+                break
 
 # Botの起動とDiscordサーバーへの接続
 client.run(TOKEN)
