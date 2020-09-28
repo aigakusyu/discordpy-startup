@@ -25,3 +25,4 @@ urllib3==1.25.10
 whitenoise==5.2.0
 yarl==1.5.1
 psycopg2==2.7.6.1
+discord.py [voice]> = 1.4.1
