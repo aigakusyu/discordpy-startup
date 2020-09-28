@@ -1,5 +1,3 @@
-pip install pandas
-
 # インストールした discord.py を読み込む
 import discord
 import pandas as pd
