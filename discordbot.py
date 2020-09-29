@@ -6,7 +6,7 @@ import codecs
 siritori =""
 use_word = []
 
-with codecs.open('D:/s_hyou1.csv', "r", "UTF-8", "ignore") as file:
+with codecs.open('https://raw.githubusercontent.com/aigakusyu/discordpy-startup/master/s_hyou1.csv', "r", "UTF-8", "ignore") as file:
     siritori = pd.read_table(file, delimiter=",")
 
 # 自分のBotのアクセストークンに置き換えてください
